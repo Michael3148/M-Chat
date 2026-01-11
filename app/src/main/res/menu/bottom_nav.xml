@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/baseline_home_24"
+        android:title="Home"/>
+    <item
+        android:id="@+id/group"
+        android:icon="@drawable/baseline_groups_24"
+        android:title="Group"/>
+    <item
+        android:id="@+id/channel"
+        android:icon="@drawable/channel_icon"
+        android:title="Channel"/>
+</menu>
