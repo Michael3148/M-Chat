@@ -10,6 +10,6 @@
         android:title="Group"/>
     <item
         android:id="@+id/channel"
-        android:icon="@drawable/channel_icon"
+        android:icon="@drawable/chanl"
         android:title="Channel"/>
 </menu>
