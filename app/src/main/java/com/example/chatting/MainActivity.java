@@ -1,5 +1,6 @@
 package com.example.chatting;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -39,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
 
                 fragmentManager.beginTransaction().
                         replace(R.id.fragmentContainerView, HomeFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("name")
+                        /*.setReorderingAllowed(true)
+                        .addToBackStack("name")*/ //TODO : use this 2 line of code in the (Home -> Chat -> ChatDetail)
                         .commit();
                 return true;
             } else if (item.getItemId() == R.id.group) {
@@ -48,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
 
                 fragmentManager.beginTransaction().
                         replace(R.id.fragmentContainerView, GroupFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("name")
                         .commit();
                 return true;
             } else if (item.getItemId() == R.id.channel) {
@@ -57,12 +56,33 @@ public class MainActivity extends AppCompatActivity {
 
                 fragmentManager.beginTransaction().
                         replace(R.id.fragmentContainerView, ChannelFragment.class, null)
-                        .setReorderingAllowed(true)
-                        .addToBackStack("name")
                         .commit();
                 return true;
             }
             return false;
         });
+    }
+    private boolean doubleBackToExitPressedOnce = false;
+
+    @SuppressLint("GestureBackNavigation")
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed(); // Exit app
+            finishAffinity();
+            System.exit(0);
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Press again to exit", Toast.LENGTH_SHORT).show();
+
+        // Reset after 2 seconds
+        new android.os.Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000); // 2 seconds
     }
 }
