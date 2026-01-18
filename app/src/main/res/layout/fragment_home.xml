@@ -5,13 +5,77 @@
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/chats"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:padding="20dp"
+        android:text="Chats 💬"
+        android:textAlignment="center"
+        android:background="@drawable/chat_top_layout"
+        android:textColor="#87CEEB"
+        android:textSize="17dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerviewlayuot"
+        android:layout_height="70dp"
+        android:background="@drawable/chat_broder"
+        android:layout_marginTop="85dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        tools:context=".RecyclerView_adapter">
+
+        <ImageView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:id="@+id/iconview"
+            android:background="@drawable/circle_profile"
+            android:layout_centerVertical="true">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/chatname"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Name"
+            android:textStyle="bold"
+            android:layout_marginEnd="60dp"
+            android:layout_marginStart="50dp"
+            android:textSize="19dp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_marginLeft="43dp">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:paddingStart="20dp"
+            android:text="This is a chatting platform developed by michael teferi as a personal project"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:scrollHorizontally="false"
+            android:lines="1"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:textColor="@color/white"
+            android:layout_marginStart="50dp"
+            android:layout_below="@id/chatname"
+            android:layout_marginLeft="43dp">
+        </TextView>
+    </RelativeLayout>
+
+    <!--<androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home"
-        android:textSize="50dp"
-        android:textAlignment="center"
-        android:paddingTop="100dp"/>
+        android:id="@+id/recyclerview"
+        android:layout_marginTop="81dp"
+        android:layout_below="@id/songs">
+    </androidx.recyclerview.widget.RecyclerView>-->
 
 </FrameLayout>

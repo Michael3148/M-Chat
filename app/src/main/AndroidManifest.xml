@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Chatting">
         <activity
+            android:name=".RecyclerView_adapter"
+            android:exported="false" />
+        <activity
             android:name=".PassCode"
             android:exported="false" />
         <activity

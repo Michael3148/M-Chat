@@ -5,13 +5,25 @@
     android:layout_height="match_parent"
     tools:context=".ChannelFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/songs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Channels 🌐"
+        android:textAlignment="center"
+        android:background="@drawable/channel_top_layout"
+        android:textColor="#87CEEB"
+        android:textSize="28dp"
+        android:textStyle="bold">
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Channel"
-        android:textAlignment="center"
-        android:textSize="50dp"
-        android:paddingTop="100dp"/>
+        android:id="@+id/recyclerview"
+        android:layout_marginTop="81dp"
+        android:layout_below="@id/songs">
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>

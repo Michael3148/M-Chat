@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/recyclerviewlayuot"
+    android:layout_height="wrap_content"
+    android:background="@drawable/chat_broder"
+    android:layout_marginTop="5dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".RecyclerView_adapter">
+
+    <ImageView
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/iconview"
+        android:background="@drawable/circle_profile"
+        android:layout_centerVertical="true">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/chatname"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="Name"
+        android:textColor="@color/white"
+        android:textAlignment="center"
+        android:layout_marginLeft="43dp">
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:paddingStart="35dp"
+        android:text="This is the chat context of a person "
+        android:textColor="@color/white"
+        android:layout_below="@id/chatname"
+        android:layout_marginLeft="43dp">
+    </TextView>
+
+</RelativeLayout>
