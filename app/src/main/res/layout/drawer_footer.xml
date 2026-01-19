@@ -1,0 +1,25 @@
+<!-- res/layout/drawer_footer.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:background="@drawable/lavender_border"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/tv_toggle_label"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:text="Enable Passcode"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <Switch
+        android:id="@+id/switch_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+</LinearLayout>

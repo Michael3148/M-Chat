@@ -19,19 +19,37 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="200dp"
             android:orientation="vertical"
-            android:background="@drawable/lavender_border">
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/lavender_border"
+            android:padding="24dp">
 
             <EditText
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="50dp"
+                android:id="@+id/passcode"
                 android:background="@drawable/lavender_border"
                 android:layout_marginTop="10dp"
-                android:hint="Enter your passcode"
+                android:padding="8dp"
+                android:maxLines="1"
+                android:textStyle="italic"
+                android:hint="Enter Passcode"
+                android:textColor="@color/lavender"
                 android:drawableLeft="@drawable/passcode_icon"
-                android:drawablePadding="10dp">
+                android:drawablePadding="10dp"
+                tools:ignore="HardcodedText">
             </EditText>
+
+            <Button
+                android:id="@+id/LoginButton"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:text="Login"
+                tools:ignore="HardcodedText">
+            </Button>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

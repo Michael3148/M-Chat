@@ -2,12 +2,10 @@
     android:shape="rectangle">
 
     <!-- Border color and width -->
-    <stroke
-        android:width="2dp"
-        android:color="@color/lavender"/> <!-- Lavender color -->
+    <!-- Lavender color -->
 
     <!-- Fill color (optional, transparent here) -->
-    <solid android:color="#007AFF"/>
+    <solid android:color="#0D1B2A"/>
 
     <!-- Corner radius: top-left & top-right = 0, bottom-left & bottom-right = 16dp -->
     <corners

@@ -1,11 +1,13 @@
 package com.example.chatting;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,7 +64,27 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+        NavigationView navigationView = findViewById(R.id.navigationView);
+
+                // Inflate footer layout
+        View footerView = getLayoutInflater().inflate(R.layout.drawer_footer, navigationView, false);
+
+                // Add to NavigationView (as header at bottom visually)
+        navigationView.addView(footerView);
+
+                // Find switch and handle toggle
+        Switch toggleSwitch = footerView.findViewById(R.id.switch_toggle);
+
+        toggleSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                Intent intent = new Intent(this, PassCode.class);
+                startActivity(intent);
+            } else {
+                toggleSwitch.setChecked(false);
+            }
+        });
     }
+
     private boolean doubleBackToExitPressedOnce = false;
 
     @SuppressLint("GestureBackNavigation")

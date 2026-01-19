@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0D1B2A"
     tools:context=".HomeFragment">
 
     <TextView
@@ -11,12 +12,23 @@
         android:layout_height="60dp"
         android:padding="20dp"
         android:text="Chats 💬"
-        android:textAlignment="center"
+        android:paddingStart="100dp"
         android:background="@drawable/chat_top_layout"
         android:textColor="#87CEEB"
+        android:layout_marginStart="60dp"
         android:textSize="17dp"
         android:textStyle="bold">
     </TextView>
+
+    <ImageView
+        android:layout_width="31dp"
+        android:layout_height="31dp"
+        android:id="@+id/chatmenu"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/menu"
+        android:layout_centerVertical="true">
+    </ImageView>
 
     <RelativeLayout
         android:layout_width="match_parent"

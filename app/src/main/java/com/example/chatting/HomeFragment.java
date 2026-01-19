@@ -2,11 +2,14 @@ package com.example.chatting;
 
 import android.os.Bundle;
 
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,7 +61,19 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        // Inflate the layout once
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        // Find the ImageView in the inflated layout
+        ImageView menuIcon = view.findViewById(R.id.chatmenu);
+
+        // Set click listener to open drawer
+        menuIcon.setOnClickListener(v -> {
+            DrawerLayout drawerLayout = requireActivity().findViewById(R.id.drawerLayout);
+            drawerLayout.openDrawer(GravityCompat.START);
+        });
+
+        // Return the same view that you inflated
+        return view;
     }
 }
