@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
@@ -75,14 +77,21 @@ public class MainActivity extends AppCompatActivity {
                 // Find switch and handle toggle
         Switch toggleSwitch = footerView.findViewById(R.id.switch_toggle);
 
+        ActivityResultLauncher<Intent> passCodeLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    // This is called when PassCode activity finishes
+                    toggleSwitch.setChecked(false);
+                }
+        );
+
         toggleSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 Intent intent = new Intent(this, PassCode.class);
-                startActivity(intent);
-            } else {
-                toggleSwitch.setChecked(false);
+                passCodeLauncher.launch(intent);
             }
         });
+
     }
 
     private boolean doubleBackToExitPressedOnce = false;

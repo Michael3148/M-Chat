@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:padding="16dp"
+    android:layout_marginTop="20dp"
     android:background="@drawable/lavender_border"
     android:gravity="center_vertical">
 
