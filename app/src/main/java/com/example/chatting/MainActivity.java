@@ -2,6 +2,7 @@ package com.example.chatting;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,10 +20,13 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentManager.beginTransaction().
                         replace(R.id.fragmentContainerView, HomeFragment.class, null)
                         /*.setReorderingAllowed(true)
-                        .addToBackStack("name")*/ //TODO : use this 2 line of code in the (Home -> Chat -> ChatDetail)
+                        .addToBackStack("name")*/ //TODO : use this 2
                         .commit();
                 return true;
             } else if (item.getItemId() == R.id.group) {
@@ -68,14 +72,11 @@ public class MainActivity extends AppCompatActivity {
         });
         NavigationView navigationView = findViewById(R.id.navigationView);
 
-                // Inflate footer layout
         View footerView = getLayoutInflater().inflate(R.layout.drawer_footer, navigationView, false);
 
-                // Add to NavigationView (as header at bottom visually)
         navigationView.addView(footerView);
 
-                // Find switch and handle toggle
-        Switch toggleSwitch = footerView.findViewById(R.id.switch_toggle);
+        Switch toggleSwitch = footerView.findViewById(R.id.switch_passcode);
 
         ActivityResultLauncher<Intent> passCodeLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -91,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 passCodeLauncher.launch(intent);
             }
         });
-
     }
 
     private boolean doubleBackToExitPressedOnce = false;

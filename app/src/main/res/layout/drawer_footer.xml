@@ -1,26 +1,113 @@
-<!-- res/layout/drawer_footer.xml -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="16dp"
-    android:layout_marginTop="20dp"
-    android:background="@drawable/lavender_border"
-    android:gravity="center_vertical">
+    android:orientation="vertical"
+    android:background="?android:attr/colorBackground"
+    android:padding="8dp">
 
-    <TextView
-        android:id="@+id/tv_toggle_label"
-        android:layout_width="0dp"
-        android:layout_weight="1"
+    <!-- ===== PassCode Item ===== -->
+    <LinearLayout
+        android:id="@+id/passcode_item"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enable Passcode"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        android:orientation="horizontal"
+        android:background="@drawable/lavender_border"
+        android:gravity="center_vertical"
+        android:padding="12dp">
 
-    <Switch
-        android:id="@+id/switch_toggle"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/footer_icon_passcode"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/passcode_icon"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/footer_title_passcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PassCode"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/footer_subtitle_passcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set or disable passcode"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"/>
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/switch_passcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </LinearLayout>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginVertical="4dp"/>
+
+    <!-- ===== Night Mode Item ===== -->
+    <LinearLayout
+        android:id="@+id/nightmode_item"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="UseSwitchCompatOrMaterialXml" />
+        android:background="@drawable/lavender_border"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/footer_icon_nightmode"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/night_mode"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/footer_title_nightmode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Night Mode"
+                android:textSize="16sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/footer_subtitle_nightmode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enable or disable night theme"
+                android:textSize="14sp"
+                android:textColor="@android:color/darker_gray"/>
+        </LinearLayout>
+
+        <Switch
+            android:id="@+id/switch_nightmode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+    </LinearLayout>
+
 </LinearLayout>
