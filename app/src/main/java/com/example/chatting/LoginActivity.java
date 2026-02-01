@@ -55,7 +55,8 @@ public class LoginActivity extends AppCompatActivity {
                     usernametext.requestFocus();
                 }
                 else {
-                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent i = new Intent(LoginActivity.this,MainActivity.class);
+                    i.putExtra("USERNAME_KEY", username);
                     startActivity(i);
                 }
             }

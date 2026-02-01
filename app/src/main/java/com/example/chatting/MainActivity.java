@@ -76,7 +76,13 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.addView(footerView);
 
+        String username = getIntent().getStringExtra("USERNAME_KEY");
+
         Switch toggleSwitch = footerView.findViewById(R.id.switch_passcode);
+
+
+        TextView longusername = footerView.findViewById(R.id.usernamelong);
+        longusername.setText(username);
 
         ActivityResultLauncher<Intent> passCodeLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
