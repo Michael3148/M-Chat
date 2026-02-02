@@ -23,12 +23,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragmentContainerView"
-            android:name="com.example.chatting.HomeFragment"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="647dp" />
+            android:layout_height="match_parent">
 
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragmentContainerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@id/bottomNavigationView" />
+
+            <!-- Put the banner here so it floats on top of the fragment -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginVertical="60dp"/>
+
+            <TextView
+                android:id="@+id/networkStatusBanner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/no_connection_layout"
+                android:textColor="@android:color/white"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="No connection"
+                android:textSize="7dp"
+                android:gravity="center"
+                android:layout_marginTop="60dp" />
+
+        </RelativeLayout>
         <!-- Navigation Drawer -->
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/navigationView"

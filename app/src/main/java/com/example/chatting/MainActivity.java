@@ -1,9 +1,15 @@
 package com.example.chatting;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkRequest;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +21,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
@@ -70,6 +77,15 @@ public class MainActivity extends AppCompatActivity {
             }
             return false;
         });
+
+
+        // Add this: Load HomeFragment by default on first launch
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragmentContainerView, HomeFragment.class, null)
+                    .commit();
+            bottomnav.setSelectedItemId(R.id.home);
+        }
         NavigationView navigationView = findViewById(R.id.navigationView);
 
         View footerView = getLayoutInflater().inflate(R.layout.drawer_footer, navigationView, false);
@@ -98,6 +114,27 @@ public class MainActivity extends AppCompatActivity {
                 passCodeLauncher.launch(intent);
             }
         });
+
+        ConnectivityManager connectivityManager =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        ConnectivityManager.NetworkCallback networkCallback =
+                new ConnectivityManager.NetworkCallback() {
+
+                    @Override
+                    public void onAvailable(@NonNull Network network) {
+                        runOnUiThread(() -> showBackOnline());
+                    }
+
+                    @Override
+                    public void onLost(@NonNull Network network) {
+                        runOnUiThread(() -> showNoConnection());
+                    }
+                };
+
+        NetworkRequest request = new NetworkRequest.Builder().build();
+        connectivityManager.registerNetworkCallback(request, networkCallback);
+
     }
 
     private boolean doubleBackToExitPressedOnce = false;
@@ -122,5 +159,23 @@ public class MainActivity extends AppCompatActivity {
                 doubleBackToExitPressedOnce = false;
             }
         }, 2000); // 2 seconds
+    }
+
+    private void showNoConnection() {
+        TextView banner = findViewById(R.id.networkStatusBanner);
+        banner.setText("No connection");
+        banner.setBackground(getResources().getDrawable(R.drawable.no_connection_layout));
+        banner.setVisibility(View.VISIBLE);
+    }
+
+    private void showBackOnline() {
+        TextView banner = findViewById(R.id.networkStatusBanner);
+        banner.setText("Online");
+        banner.setBackground(getResources().getDrawable(R.drawable.back_online_layout));
+        banner.setVisibility(View.VISIBLE);
+
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            banner.setVisibility(View.GONE);
+        }, 3000);
     }
 }
