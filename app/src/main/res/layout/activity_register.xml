@@ -6,10 +6,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
     android:background="@drawable/securitybackground"
     android:gravity="center"
-    tools:context=".LoginActivity">
+    tools:context=".RegisterActivity">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +27,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sign In"
+                android:text="Register"
                 android:textAlignment="center"
                 android:textColor="@color/lavender"
                 android:textSize="35sp"
@@ -36,36 +35,52 @@
                 tools:ignore="HardcodedText">
             </TextView>
 
-            <EditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/username"
-                android:background="@drawable/lavender_border"
-                android:layout_marginTop="40dp"
-                android:padding="8dp"
-                android:maxLines="1"
+                android:layout_height="wrap_content"
                 android:textStyle="italic"
-                android:hint="Enter Username"
-                android:textColor="@color/lavender"
-                android:drawableLeft="@drawable/login_icon"
-                android:drawablePadding="10dp"
-                tools:ignore="HardcodedText">
-            </EditText>
-            <EditText
+                android:hint="Enter Username">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:textStyle="italic"
+                    android:textColor="@color/lavender"
+                    android:background="@drawable/lavender_border"
+                    android:layout_height="wrap_content"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:id="@+id/password"
-                android:background="@drawable/lavender_border"
-                android:layout_marginTop="40dp"
-                android:padding="8dp"
-                android:maxLines="1"
+                android:layout_height="wrap_content"
                 android:textStyle="italic"
                 android:hint="Enter Password"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:textStyle="italic"
+                    android:textColor="@color/lavender"
+                    android:background="@drawable/lavender_border"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/signInLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:layout_marginTop="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="Already have an account? \n   Sign In"
                 android:textColor="@color/lavender"
-                android:drawableLeft="@drawable/password"
-                android:drawablePadding="10dp"
-                tools:ignore="HardcodedText">
-            </EditText>
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
 
             <Button
                 android:id="@+id/LoginButton"
@@ -73,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="40dp"
-                android:text="Login"
+                android:text="Register"
                 tools:ignore="HardcodedText">
             </Button>
         </LinearLayout>

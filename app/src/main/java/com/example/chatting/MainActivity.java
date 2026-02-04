@@ -2,6 +2,7 @@ package com.example.chatting;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -14,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +24,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
@@ -95,6 +98,14 @@ public class MainActivity extends AppCompatActivity {
         String username = getIntent().getStringExtra("USERNAME_KEY");
 
         Switch toggleSwitch = footerView.findViewById(R.id.switch_passcode);
+
+        LinearLayout logout= footerView.findViewById(R.id.logOutDrawer);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showLogoutDialog();
+            }
+        });
 
 
         TextView longusername = footerView.findViewById(R.id.usernamelong);
@@ -177,5 +188,37 @@ public class MainActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             banner.setVisibility(View.GONE);
         }, 3000);
+    }
+
+    public void showLogoutDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Logout");
+        builder.setMessage("Are you sure you want to logout?");
+
+        // YES button
+        builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // TODO: clear session (Firebase logout, shared prefs, etc.)
+                // FirebaseAuth.getInstance().signOut();
+
+                Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(),"Logout successful", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
+        // CANCEL button
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
     }
 }
