@@ -78,7 +78,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:text="Already have an account? \n   Sign In"
-                android:textColor="@color/lavender"
+                android:textColor="#1E88E5"
                 android:textSize="14sp"
                 tools:ignore="HardcodedText" />
 

@@ -3,4 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="lavender">#C7B7E2</color>
+    <color name="blue">#0084FF</color>
+
+    <!-- Your custom brand colors -->
+    <color name="primary">#0084FF</color>
+    <color name="primary_dark">#006FCF</color>
+    <color name="accent">#32A3FF</color>
+    <color name="background">#F2F2F2</color>
+    <color name="text_primary">#222222</color>
 </resources>
