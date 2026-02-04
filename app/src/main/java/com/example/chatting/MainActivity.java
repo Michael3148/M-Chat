@@ -195,6 +195,7 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Logout");
         builder.setMessage("Are you sure you want to logout?");
+        builder.setCancelable(false);
 
         // YES button
         builder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {

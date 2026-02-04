@@ -23,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         EditText usernameField = findViewById(R.id.username);
         EditText passwordField = findViewById(R.id.password);
+        EditText comfirmPasswordField = findViewById(R.id.comfirmPassword);
         Button loginButton = findViewById(R.id.LoginButton);
         TextView signInLink = findViewById(R.id.signInLink);
 
@@ -31,10 +32,16 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String username = usernameField.getText().toString();
                 String password = passwordField.getText().toString();
+                String comfirmPassword = comfirmPasswordField.getText().toString();
 
-                if (username.isEmpty() || password.isEmpty()) {
+
+                if (username.isEmpty() || password.isEmpty() || comfirmPassword.isEmpty()) {
                     Toast.makeText(RegisterActivity.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else if (!password.equals(comfirmPassword)) {
+                    Toast.makeText(RegisterActivity.this, "Passwords do not match", Toast.LENGTH_SHORT).show();
+                }
+                else {
                     // Start MainActivity and pass the username
                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                     intent.putExtra("USERNAME_KEY", username);

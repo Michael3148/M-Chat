@@ -30,8 +30,7 @@
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragmentContainerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_above="@id/bottomNavigationView" />
+                android:layout_height="match_parent"/>
 
             <!-- Put the banner here so it floats on top of the fragment -->
             <View
