@@ -11,6 +11,8 @@ import android.net.NetworkRequest;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,6 +53,18 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        NavigationView navigationView = findViewById(R.id.navigationView);
+
+        View footerView = getLayoutInflater().inflate(R.layout.drawer_footer, navigationView, false);
+
+        navigationView.addView(footerView);
+
+        Switch toggleSwitch = footerView.findViewById(R.id.switch_passcode);
+        TextView letter = footerView.findViewById(R.id.avatarLetter);
+        LinearLayout logout= footerView.findViewById(R.id.logOutDrawer);
+
+
         BottomNavigationView bottomnav = findViewById(R.id.bottomNavigationView);
 
         bottomnav.setOnItemSelectedListener(item -> {
@@ -89,17 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     .commit();
             bottomnav.setSelectedItemId(R.id.home);
         }
-        NavigationView navigationView = findViewById(R.id.navigationView);
 
-        View footerView = getLayoutInflater().inflate(R.layout.drawer_footer, navigationView, false);
-
-        navigationView.addView(footerView);
-
-        String username = getIntent().getStringExtra("USERNAME_KEY");
-
-        Switch toggleSwitch = footerView.findViewById(R.id.switch_passcode);
-
-        LinearLayout logout= footerView.findViewById(R.id.logOutDrawer);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,8 +111,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        String username = getIntent().getStringExtra("USERNAME_KEY");
         TextView longusername = footerView.findViewById(R.id.usernamelong);
+        if(username != null && !username.isEmpty()) {
+            String firstLetter = username
+                    .substring(0,1)
+                    .toUpperCase();
+            letter.setText(firstLetter);
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Username is empty or null !!!", Toast.LENGTH_SHORT).show();
+        }
         longusername.setText(username);
 
         ActivityResultLauncher<Intent> passCodeLauncher = registerForActivityResult(
