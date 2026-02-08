@@ -4,19 +4,24 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.Network;
 import android.net.NetworkRequest;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -26,6 +31,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -60,9 +66,11 @@ public class MainActivity extends AppCompatActivity {
 
         navigationView.addView(footerView);
 
+        TextView longusername = footerView.findViewById(R.id.usernamelong);
         Switch toggleSwitch = footerView.findViewById(R.id.switch_passcode);
-        TextView letter = footerView.findViewById(R.id.avatarLetter);
+        TextView avatarletter = footerView.findViewById(R.id.avatarLetter);
         LinearLayout logout= footerView.findViewById(R.id.logOutDrawer);
+        FrameLayout avatarContainer = footerView.findViewById(R.id.avatarContainer);
 
 
         BottomNavigationView bottomnav = findViewById(R.id.bottomNavigationView);
@@ -112,12 +120,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
         String username = getIntent().getStringExtra("USERNAME_KEY");
-        TextView longusername = footerView.findViewById(R.id.usernamelong);
         if(username != null && !username.isEmpty()) {
             String firstLetter = username
                     .substring(0,1)
                     .toUpperCase();
-            letter.setText(firstLetter);
+            avatarletter.setText(firstLetter);
         }
         else {
             Toast.makeText(getApplicationContext(), "Username is empty or null !!!", Toast.LENGTH_SHORT).show();
@@ -158,6 +165,8 @@ public class MainActivity extends AppCompatActivity {
 
         NetworkRequest request = new NetworkRequest.Builder().build();
         connectivityManager.registerNetworkCallback(request, networkCallback);
+
+        avatarContainer.setOnClickListener(v -> showImagePicker());
 
     }
 
@@ -235,4 +244,47 @@ public class MainActivity extends AppCompatActivity {
         });
         builder.show();
     }
+    private void showImagePicker() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        galleryIntent.setType("image/*");
+
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        Intent chooser = Intent.createChooser(galleryIntent, "Select Profile Picture");
+        chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[]{cameraIntent});
+
+        startActivityForResult(chooser, 100);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        NavigationView navigationView = findViewById(R.id.navigationView);
+
+        View footerView = getLayoutInflater().inflate(R.layout.drawer_footer, navigationView, false);
+
+        navigationView.addView(footerView);
+
+        ImageView avatarImage = footerView.findViewById(R.id.avatarImage);
+        TextView avatarletter = footerView.findViewById(R.id.avatarLetter);
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 100 && resultCode == RESULT_OK) {
+            if(data != null) {
+                Uri imageUri = data.getData(); // gallery photo
+
+                if(imageUri != null) {
+                    avatarImage.setImageURI(imageUri);
+                } else {
+                    // camera photo
+                    Bitmap bitmap = (Bitmap) data.getExtras().get("data");
+                    avatarImage.setImageBitmap(bitmap);
+                }
+
+                avatarImage.setVisibility(View.VISIBLE);
+                avatarletter.setVisibility(View.GONE);
+            }
+        }
+    }
+
 }
