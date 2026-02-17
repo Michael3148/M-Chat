@@ -54,8 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
         signInLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // For now, just a toast. In a real app, you'd switch to Login mode or another activity.
-                Toast.makeText(RegisterActivity.this, "Sign In clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(RegisterActivity.this, Sign_in.class);
+                startActivity(intent);
             }
         });
     }

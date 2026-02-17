@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             avatarletter.setText(firstLetter);
         }
         else {
-            Toast.makeText(getApplicationContext(), "Username is empty or null !!!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Username is empty !!!", Toast.LENGTH_SHORT).show();
         }
         longusername.setText(username);
 
