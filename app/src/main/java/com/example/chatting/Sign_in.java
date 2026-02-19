@@ -49,5 +49,12 @@ public class Sign_in extends AppCompatActivity {
                 }
             }
         });
+
+        forgotPasswordLink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"Forgot password link clicked",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
